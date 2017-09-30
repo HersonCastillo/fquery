@@ -28,3 +28,9 @@ remover clase:
 
 $("elemento").removeClass("nuevaclase")
 
+Para inicializar el fQuery:
+
+$().ready(function(){
+    //code...
+})
+
