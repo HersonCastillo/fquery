@@ -1,0 +1,2 @@
+# fquery
+Fake jQuery
