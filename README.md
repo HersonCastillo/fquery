@@ -28,6 +28,14 @@ remover clase:
 
 $("elemento").removeClass("nuevaclase")
 
+Establecer u obtener el valor del atributo de un elemento:
+
+$("elemento").attr("name") // 'nombreelemento'
+
+Establecer o cambiar el valor un atributo para un elemento:
+
+$("elemento").attr("disabled", "true")
+
 Para inicializar el fQuery:
 
 $().ready(function(){
