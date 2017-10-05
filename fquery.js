@@ -117,8 +117,20 @@ class fQuery{
 									.replace(/[,}]/g,";");
 				if(this.a){
 					var y = this.q;
-					for(var i = 0; i <= (y.length - 1); i++) y[i].style = transform;
-				}else this.q.style = transform;
+					var release = transform.split(";");
+					for(var i = 0; i <= (y.length - 1); i++){
+						for(var j = 0; j <= (release.length - 1); j++){
+							var spl = release[j].split(":");
+							y[i].style[spl[0]] = spl[1];
+						}
+					}
+				}else{
+					var release = transform.split(";");
+					for(var j = 0; j <= (release.length - 1); j++){
+						var spl = release[j].split(":");
+						this.q.style[spl[0]] = spl[1];
+					}
+				}
 			}else console.error('Error: An error occurred in the $:css() function, a type argument is incorrect.');
 		}else console.error('Error: An error occurred in the $:css() function, an argument is missing.');
 	}
