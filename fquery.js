@@ -11,12 +11,17 @@ class fQuery{
 	constructor(o){
 		this.o = o;
 		if(this.o !== undefined){
-			this.o = this.o.trim();
-			if(this.o[0] != '#'){
-				this.q = d.querySelectorAll(this.o);
-				this.a = true;
+			if(this.o != w && this.o != d){
+				this.o = this.o.trim();
+				if(this.o[0] != '#'){
+					this.q = d.querySelectorAll(this.o);
+					this.a = true;
+				}else{
+					this.q = d.querySelector(this.o);
+					this.a = false;
+				}
 			}else{
-				this.q = d.querySelector(this.o);
+				this.q = o;
 				this.a = false;
 			}
 		}else return false;
@@ -28,12 +33,10 @@ class fQuery{
 		f = f || undefined;
 		if(f === undefined) console.error('Error: An error occurred in the $:ready() function, an argument is missing.');
 		else if(typeof f == "function"){
-			if(this.o == undefined){
-				d.onload = f();
-			}else{
-				if(this.a) this.q[0].onload = f();
+			if(this.o != undefined){
+				if(this.a) this.q[0].onload = f;
 				else this.q.onload = f;
-			}
+			}else return;
 		}else console.error('Error: The argument set is not a function.')
 	}
 	html(h){
@@ -111,10 +114,7 @@ class fQuery{
 			else x = this.q;
 			if(typeof prop === "string") return x.style.getPropertyValue(prop.toString());
 			else if(typeof prop === "object"){
-				var transform = JSON
-									.stringify(prop)
-									.replace(/["{]/g,"")
-									.replace(/[,}]/g,";");
+				var transform = JSON.stringify(prop).replace(/["{]/g,"").replace(/[,}]/g,";");
 				if(this.a){
 					var y = this.q;
 					var release = transform.split(";");
@@ -145,6 +145,7 @@ class fQuery{
 			}else console.error('Error: The argument set is not a function.')
 		}else console.error('Error: An error occurred in the $:on(,) function, two arguments are missing.');
 	}
+
 }
 var $ = (elem) => {
 	return new fQuery(elem);
