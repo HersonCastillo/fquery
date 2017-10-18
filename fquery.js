@@ -217,6 +217,17 @@ class fQuery{
 		}
 		return;
 	}
+	delay(f, t){
+		f = f || undefined;
+		t = t || undefined;
+		if(t === undefined) t = 1;
+		if(f !== undefined && typeof f === "function"){
+			var clase = this;
+			setTimeout(function(){
+				f(clase)
+			}, t)
+		}else console.error('Error: An error occurred in the $:delay() function, an argument is missing.');
+	}
 }
 var $ = (elem) => {
 	return new fQuery(elem);
