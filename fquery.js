@@ -209,6 +209,14 @@ class fQuery{
 			return;
 		}
 	}
+	append(h){
+		if(h == undefined) console.error('Error: An error occurred in the $:append() function, an argument is missing.');
+		else{
+			if(!this.a)this.q.innerHTML += h;
+			else for(var i = 0; i <= (this.q.length - 1); i++) this.q[i].innerHTML += h;
+		}
+		return;
+	}
 }
 var $ = (elem) => {
 	return new fQuery(elem);
